@@ -5,7 +5,7 @@ param namePrefix string
 param location string = resourceGroup().location
 
 // set local var
-var logicAppConnectorName = '${namePrefix}-la'
+var logicAppConnectorName = '${namePrefix}-lac'
 
 module customApi 'customApi.bicep' = {
   name: logicAppConnectorName
