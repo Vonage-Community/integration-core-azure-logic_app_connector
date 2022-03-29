@@ -33,7 +33,6 @@ resource customApi 'Microsoft.Web/customApis@2016-06-01' = {
         'description': 'The Messages API' 
       }
       'host': 'api.nexmo.com'
-      'basePath': '/'
       'schemes': [
         'https'
       ]
