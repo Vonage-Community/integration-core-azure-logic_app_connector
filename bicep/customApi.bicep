@@ -238,10 +238,10 @@ resource customApi 'Microsoft.Web/customApis@2016-06-01' = {
             }
           }
         }
-        '/verify/{format}:': {
+        '/verify/{format}': {
           'post': {
-            'operationId': 'verifyRequest'
-            'summary': 'Request a Verification'
+            'operationId': 'VerifyRequest'
+            'summary': 'Request a verification'
             'description':'Use Verify request to generate and send a PIN to your user'
             'consumes': [
               'application/x-www-form-urlencoded'
@@ -402,6 +402,89 @@ resource customApi 'Microsoft.Web/customApis@2016-06-01' = {
                 'schema': {}
               }
             }
+          }
+        }
+        '/verify/check/{format}': {
+          'post': {
+            'operationId': 'VerifyCheck'
+            'summary': 'Verify check'
+            'description':'Use Verify check to confirm that the PIN you received from your user matches the one sent by Vonage in your Verify request.'
+            'consumes': [
+              'application/x-www-form-urlencoded'
+            ]
+            'produces': [
+              'application/json'
+              'text/xml'
+            ]
+            'parameters':[
+              {
+                'description': 'The response format'
+                'enum': [
+                  'json'
+                  'xml'
+                ]
+                'in': 'path'
+                'name': 'format'
+                'required': true
+                'type': 'string'
+                'x-example': 'json'
+              }
+              {
+                'in': 'formData'
+                'name': 'api_key'
+                'required': true
+                'type': 'string'
+              }
+              {
+                'in': 'formData'
+                'name': 'api_secret'
+                'required': true
+                'type': 'string'
+              }
+              {
+                'in': 'formData'
+                'name': 'request_id'
+                'required': true
+                'type': 'string'
+                'maximum': 32
+              }
+              {
+                'in': 'formData'
+                'name': 'code'
+                'required': true
+                'type': 'string'
+                'maximum': 6
+                'minimum': 4
+              }
+            ]
+            'responses':{
+              '200':{
+                'description': 'OK'
+                'schema':{
+                  'type': 'object'
+                  'properties':{
+                    'request_id': {
+                      'type': 'string'
+                    }
+                    'event_id': {
+                      'type': 'string'
+                    }
+                    'status': {
+                      'type': 'string'
+                    }
+                    'price': {
+                      'type': 'string'
+                    }
+                    'currency': {
+                      'type': 'string'
+                    }
+                    'estimated_price_messages_sent': {
+                      'type': 'string'
+                    }
+                  }
+                } 
+              }                
+            }            
           }
         }
       }
