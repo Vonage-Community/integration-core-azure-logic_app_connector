@@ -257,7 +257,10 @@ resource customApi 'Microsoft.Web/customApis@2016-06-01' = {
                 'in': 'path'
                 'required': true
                 'type': 'string'
-                'x-example': 'json'            
+                'enum': [
+                  'json'
+                  'xml'
+                ]
               }
               {
                 'description': 'You can find your API key in your [account dashboard](https://dashboard.nexmo.com)'
@@ -399,7 +402,17 @@ resource customApi 'Microsoft.Web/customApis@2016-06-01' = {
             'responses': {
               '200':{
                 'description': 'OK'
-                'schema': {}
+                'schema':{
+                  'type': 'object'
+                  'properties':{
+                    'status': {
+                      'type': 'string'
+                    }
+                    'request_id': {
+                      'type': 'string'
+                    }
+                  }
+                }
               }
             }
           }
@@ -427,7 +440,6 @@ resource customApi 'Microsoft.Web/customApis@2016-06-01' = {
                 'name': 'format'
                 'required': true
                 'type': 'string'
-                'x-example': 'json'
               }
               {
                 'in': 'formData'
@@ -482,9 +494,269 @@ resource customApi 'Microsoft.Web/customApis@2016-06-01' = {
                       'type': 'string'
                     }
                   }
-                } 
-              }                
-            }            
+                }
+              }
+            }
+          }
+        }
+        '/ni/basic/{format}': {
+          'get': {
+            'operationId': 'BasicNumberInsight'
+            'summary': 'Provides basic number insight information about a number.'
+            'description':'Provides basic number insight information about a number.'
+            'produces': [
+              'application/json'
+              'text/xml'
+            ]
+            'parameters': [
+              {
+                'name': 'format'
+                'description': 'The response format.'
+                'in': 'path'
+                'required': true
+                'type': 'string'
+                'enum': [
+                  'json'
+                  'xml'
+                ]
+              }
+              {
+                'in': 'query'
+                'name': 'api_key'
+                'required': true
+                'type': 'string'
+                'description': 'You can find your API key in your account overview'
+              }
+              {
+                'in': 'query'
+                'name': 'api_secret'
+                'required': true
+                'type': 'string'
+                'description': 'You can find your API secret in your account overview'
+              }
+              {
+                'in': 'query'
+                'name': 'number'
+                'required': true
+                'type': 'string'
+                'description': 'A single phone number that you need insight about in national or international format.'
+              }
+              {
+                'in': 'query'
+                'name': 'country'
+                'required': true
+                'type': 'string'
+                'description': 'If a number does not have a country code or is uncertain, set the two-character country code. This code must be in ISO 3166-1 alpha-2 format and in upper case. For example, GB or US. '
+              }
+            ]
+            'responses':{
+              '200':{
+                'description': 'OK'
+                'schema':{
+                  'type': 'object'
+                  'properties':{
+                    'status': {
+                      'type': 'integer'
+                    }
+                    'status_message': {
+                      'type': 'string'
+                    }
+                    'request_id': {
+                      'type': 'string'
+                    }
+                    'international_format_number': {
+                      'type': 'string'
+                    }
+                    'national_format_number': {
+                      'type': 'string'
+                    }
+                    'country_code': {
+                      'type': 'string'
+                    }
+                    'country_code_iso3': {
+                      'type': 'string'
+                    }
+                    'country_name': {
+                      'type': 'string'
+                    }
+                    'country_prefix': {
+                      'type': 'string'
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        '/ni/standard/{format}': {
+          'get': {
+            'operationId': 'StandardNumberInsight'
+            'summary': 'Provides standard number insight information about a number.'
+            'description':'Provides standard number insight information about a number.'
+            'produces': [
+              'application/json'
+              'text/xml'
+            ]
+            'parameters': [
+              {
+                'name': 'format'
+                'description': 'The response format.'
+                'in': 'path'
+                'required': true
+                'type': 'string'
+                'enum': [
+                  'json'
+                  'xml'
+                ]
+              }
+              {
+                'in': 'query'
+                'name': 'api_key'
+                'required': true
+                'type': 'string'
+                'description': 'You can find your API key in your account overview'
+              }
+              {
+                'in': 'query'
+                'name': 'api_secret'
+                'required': true
+                'type': 'string'
+                'description': 'You can find your API secret in your account overview'
+              }
+              {
+                'in': 'query'
+                'name': 'number'
+                'required': true
+                'type': 'string'
+                'description': 'A single phone number that you need insight about in national or international format.'
+              }
+              {
+                'in': 'query'
+                'name': 'country'
+                'required': true
+                'type': 'string'
+                'description': 'If a number does not have a country code or is uncertain, set the two-character country code. This code must be in ISO 3166-1 alpha-2 format and in upper case. For example, GB or US. '
+              }
+              {
+                'in': 'query'
+                'name': 'cnam'
+                'required': true
+                'type': 'string'
+                'description': 'Indicates if the name of the person who owns the phone number should be looked up and returned in the response. Set to true to receive phone number owner name in the response. This features is available for US numbers only and incurs an additional charge.'
+              }
+            ]
+            'responses':{
+              '200':{
+                'description': 'OK'
+                'schema':{
+                  'type': 'object'
+                  'properties':{
+                    'status': {
+                      'type': 'integer'
+                    }
+                    'status_message': {
+                      'type': 'string'
+                    }
+                    'request_id': {
+                      'type': 'string'
+                    }
+                    'international_format_number': {
+                      'type': 'string'
+                    }
+                    'national_format_number': {
+                      'type': 'string'
+                    }
+                    'country_code': {
+                      'type': 'string'
+                    }
+                    'country_code_iso3': {
+                      'type': 'string'
+                    }
+                    'country_name': {
+                      'type': 'string'
+                    }
+                    'country_prefix': {
+                      'type': 'string'
+                    }
+                    'request_price': {
+                      'type': 'string'
+                    }
+                    'refund_price': {
+                      'type': 'string'
+                    }
+                    'remaining_balance': {
+                      'type': 'string'
+                    }
+                    'current_carrier': {
+                      'type': 'object'
+                      'properties':{
+                        'network_code': {
+                          'type': 'string'
+                        }
+                        'name': {
+                          'type': 'string'
+                        }
+                        'country': {
+                          'type': 'string'
+                        }
+                        'network_type': {
+                          'type': 'string'
+                        }
+                      }
+                    }
+                    'original_carrier': {
+                      'type': 'object'
+                      'properties':{
+                        'network_code': {
+                          'type': 'string'
+                        }
+                        'name': {
+                          'type': 'string'
+                        }
+                        'country': {
+                          'type': 'string'
+                        }
+                        'network_type': {
+                          'type': 'string'
+                        }
+                      }
+                    }
+                    'ported': {
+                      'type': 'string'
+                    }
+                    'caller_identity': {
+                      'type': 'object'
+                      'properties':{
+                        'caller_type': {
+                          'type': 'string'
+                        }
+                        'caller_name': {
+                          'type': 'string'
+                        }
+                        'first_name': {
+                          'type': 'string'
+                        }
+                        'last_name': {
+                          'type': 'string'
+                        }
+                      }
+                    }
+                    'caller_name': {
+                      'type': 'string'
+                    }
+                    'last_name': {
+                      'type': 'string'
+                    }
+                    'first_name': {
+                      'type': 'string'
+                    }
+                    'caller_type': {
+                      'type': 'string'
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
