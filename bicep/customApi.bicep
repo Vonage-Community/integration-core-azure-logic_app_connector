@@ -10,7 +10,8 @@ resource customApi 'Microsoft.Web/customApis@2016-06-01' = {
   properties: {
     apiType: 'Rest'
     brandColor: '#ffffff'
-    capabilities: []
+    publisher: 'Vonage'
+    capabilities: []    
     connectionParameters: {
       username: {
         type: 'securestring'
@@ -19,7 +20,7 @@ resource customApi 'Microsoft.Web/customApis@2016-06-01' = {
         type: 'securestring'
       }
     }
-    description: 'The Messages API consolidates and normalises exchanges across all messaging channels. It allows you to use a single API to interact with our various channels such as SMS, MMS, WhatsApp, Viber and Facebook Messenger. The Verify API helps you to implement 2FA (two-factor authentication) in your applications.\n\nContact Support:\n Name: Vonage DevRel\n Email: devrel@vonage.com'
+    description: 'The Vonage API Platform enables you to add communications within the context of your applications, including SMS, Voice and Chat. Sign up for a Nexmo account here - https://www.vonage.com/'
     displayName: 'Vonage'
     iconUri: 'https://raw.githubusercontent.com/Vonage-Community/integration-core-azure-logic_app_connector/main/static/VonageLogo_Symbol_Black_Small.png'
     backendService: {
@@ -28,9 +29,13 @@ resource customApi 'Microsoft.Web/customApis@2016-06-01' = {
     swagger: any({
       'swagger': '2.0'
       'info': { 
-        'version': '1.0.0'
-        'title': 'Messages & Verify APIs'
-        'description': '' 
+        'version': '1.0'
+        'title': 'Vonage'
+        'description': 'The Vonage API Platform enables you to add communications within the context of your applications, including SMS, Voice and Chat. Sign up for a Nexmo account here - https://www.vonage.com/' 
+        'contact': {
+          'name': 'Vonage Support'
+          'url': 'https://www.vonage.co.uk/support'
+        }
       }
       'host': 'api.nexmo.com'
       'schemes': [
@@ -40,6 +45,7 @@ resource customApi 'Microsoft.Web/customApis@2016-06-01' = {
       'produces': [
         'application/json'
       ]
+      'stackOwner':'Vonage'
       'paths': {
         '/v1/messages/': {
           'post': {
@@ -759,6 +765,20 @@ resource customApi 'Microsoft.Web/customApis@2016-06-01' = {
           }
         }
       }
+      'x-ms-connector-metadata': [
+        {
+          'propertyName': 'Website'
+          'propertyValue': 'https://vonage.com'
+        }
+        {
+          'propertyName': 'Privacy Policy'
+          'propertyValue': 'https://www.vonage.com/legal/privacy-policy'
+        }
+        {
+          'propertyName': 'Categories'
+          'propertyValue': 'Communications'
+        }
+      ]
       'definitions': {}
       'parameters': {}
       'responses': {}
