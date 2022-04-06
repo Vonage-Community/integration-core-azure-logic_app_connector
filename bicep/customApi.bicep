@@ -10,7 +10,6 @@ resource customApi 'Microsoft.Web/customApis@2016-06-01' = {
   properties: {
     apiType: 'Rest'
     brandColor: '#ffffff'
-    publisher: 'Vonage'
     capabilities: []    
     connectionParameters: {
       username: {
