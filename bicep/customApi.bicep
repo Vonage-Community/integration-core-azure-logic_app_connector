@@ -46,9 +46,6 @@ resource customApi 'Microsoft.Web/customApis@2016-06-01' = {
             'summary': 'Send a message to the given channel.'
             'description': 'Send a Message'
             'operationId': 'SendAMessageToTheGivenChannel.'
-            'security': [
-              'basic_auth'
-            ]
             'parameters': [
               {
                 'name': 'Content-Type'
