@@ -1,0 +1,11 @@
+{
+    "properties":{
+        "connectionParameters": {},
+        "iconBrandColor": "#FFFFFF",
+        "capabilities":[
+            "actions"
+        ],
+        "publisher": "Vonage",
+        "stackOwner": "Voange"
+    }
+}

@@ -44,7 +44,6 @@ resource customApi 'Microsoft.Web/customApis@2016-06-01' = {
       'produces': [
         'application/json'
       ]
-      'stackOwner':'Vonage'
       'paths': {
         '/v1/messages/': {
           'post': {
